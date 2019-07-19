@@ -9,13 +9,16 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public Text scoreText;
     public Text winText;
+    public Text livesText;
     private Rigidbody2D rb2d;
     private int score;
+    private int lives;
     // Start is called before the first frame update
     void Start()
     {
       rb2d = GetComponent<Rigidbody2D>(); 
       score = 0; 
+      lives = 3;
       winText.text = "";
       SetScoreText();
     }
@@ -66,5 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             winText.text = "You Win!";
         }
+
+        livesText.text = "Lives: " + lives.ToString ();
     }
 }
