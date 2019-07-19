@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpForce;
     public Text scoreText;
+    public Text winText;
     private Rigidbody2D rb2d;
     private int score;
     // Start is called before the first frame update
@@ -15,7 +16,8 @@ public class PlayerController : MonoBehaviour
     {
       rb2d = GetComponent<Rigidbody2D>(); 
       score = 0; 
-      
+      winText.text = "";
+      SetScoreText();
     }
 
     // Update is called once per frame
@@ -52,7 +54,17 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             score = score + 1;
+            SetScoreText();
             
+        }
+    }
+
+    void SetScoreText()
+    {
+        scoreText.text = "Score: " + score.ToString ();
+        if(score >= 4)
+        {
+            winText.text = "You Win!";
         }
     }
 }
