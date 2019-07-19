@@ -60,6 +60,13 @@ public class PlayerController : MonoBehaviour
             SetScoreText();
             
         }
+
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.SetActive(false);
+            lives = lives - 1;
+            SetScoreText();
+        }
     }
 
     void SetScoreText()
@@ -71,5 +78,9 @@ public class PlayerController : MonoBehaviour
         }
 
         livesText.text = "Lives: " + lives.ToString ();
+        if(lives == 0)
+        {
+            livesText.text = "You Lose...";
+        }
     }
 }
