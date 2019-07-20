@@ -11,12 +11,19 @@ public class PlayerController : MonoBehaviour
     public Text winText;
     public Text livesText;
     public GameObject Player;
+    public AudioClip musicClipOne;
+
+    public AudioClip musicClipTwo;
+
+    public AudioSource musicSource;
     private Rigidbody2D rb2d;
     private int score;
     private int lives;
     // Start is called before the first frame update
     void Start()
     {
+      musicSource.clip = musicClipOne;
+      musicSource.Play();  
       rb2d = GetComponent<Rigidbody2D>(); 
       score = 0; 
       lives = 3;
@@ -88,6 +95,8 @@ public class PlayerController : MonoBehaviour
 
         if(score >= 8)
         {
+            musicSource.clip = musicClipTwo;
+            musicSource.Play();
             winText.text = "You Win!";
         }
     }
