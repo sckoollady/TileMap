@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Text scoreText;
     public Text winText;
     public Text livesText;
+    public GameObject Player;
     private Rigidbody2D rb2d;
     private int score;
     private int lives;
@@ -72,15 +73,22 @@ public class PlayerController : MonoBehaviour
     void SetScoreText()
     {
         scoreText.text = "Score: " + score.ToString ();
-        if(score >= 4)
+        if(score == 4)
         {
-            winText.text = "You Win!";
+            transform.position = new Vector3(-10.77f, -13.97f,0f);
+            lives = 3;
         }
 
         livesText.text = "Lives: " + lives.ToString ();
         if(lives == 0)
         {
             livesText.text = "You Lose...";
+            Destroy(Player);
+        }
+
+        if(score >= 8)
+        {
+            winText.text = "You Win!";
         }
     }
 }
