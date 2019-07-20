@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-     public GameObject player;
-
-     private Vector3 offset;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-       offset = transform.position - player.transform.position; 
-    }
-
-    // Update is called once per frame
-    void LateUpdate()
-    {
-      transform.position = player.transform.position + offset;  
+     public GameObject objectToFollow;
+    
+    public float speed = 2.0f;
+    
+    void Update () {
+        float interpolation = speed * Time.deltaTime;
+        
+        Vector3 position = this.transform.position;
+        position.y = Mathf.Lerp(this.transform.position.y, objectToFollow.transform.position.y, interpolation);
+        position.x = Mathf.Lerp(this.transform.position.x, objectToFollow.transform.position.x, interpolation);
+        
+        this.transform.position = position;
     }
 }

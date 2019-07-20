@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    Animator anim;
     public float speed;
     public float jumpForce;
     public Text scoreText;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
       musicSource.clip = musicClipOne;
       musicSource.Play();  
+      anim = GetComponent<Animator> ();
       rb2d = GetComponent<Rigidbody2D>(); 
       score = 0; 
       lives = 3;
@@ -34,6 +36,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      if(Input.GetKey(KeyCode.RightArrow))
+      {
+         anim.SetInteger("State",1);
+      }
+      if(Input.GetKey(KeyCode.LeftArrow))
+      {
+          anim.SetInteger("State",1);
+      }
       if (Input.GetKey("escape"))
       {
          Application.Quit(); 
@@ -54,7 +64,8 @@ public class PlayerController : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.UpArrow))
             {
-                rb2d.AddForce(new Vector2(0,jumpForce), ForceMode2D.Impulse);   
+                rb2d.AddForce(new Vector2(0,jumpForce), ForceMode2D.Impulse); 
+                anim.SetInteger("State",3);  
             }
         }
     }
@@ -82,7 +93,7 @@ public class PlayerController : MonoBehaviour
         scoreText.text = "Score: " + score.ToString ();
         if(score == 4)
         {
-            transform.position = new Vector3(-10.77f, -13.97f,0f);
+            transform.position = new Vector3(-8.87f, -13.03f,0f);
             lives = 3;
         }
 
